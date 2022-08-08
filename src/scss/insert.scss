@@ -1,0 +1,54 @@
+// compileCompressed: ../../static/css/insert.css
+
+.lemon-uc-post-insert {
+    margin: 10px 0;
+    text-align: center;
+    font-size: 0;
+    box-sizing: border-box;
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+    .lemon-uc-mode-item {
+        display: inline-block;
+        height: 28px;
+        margin: 0 5px;
+        line-height: 28px;
+        color: #fff;
+        border-radius: 4px;
+        background: #ddd;
+        clear: both;
+        cursor: pointer;
+        .icon {
+            float: left;
+            display: block;
+            width: 28px;
+            height: 28px;
+            font-size: 16px;
+        }
+        .name,
+        .value {
+            padding-right: 8px;
+            font-size: 14px;
+        }
+    }
+    .article-collect {
+        background: #08c;
+        &:active {
+            background: darken(#08c, 5%);
+        }
+    }
+    .article-like {
+        background: #f00;
+        &:active {
+            background: darken(#f00, 5%);
+        }
+    }
+    .follow-user {
+        background: #033;
+        &:active {
+            background: lighten(#033, 5%);
+        }
+    }
+}

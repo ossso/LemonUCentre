@@ -1,0 +1,80 @@
+.lemon-verification-form-group {
+    padding: 30px 30px 10px;
+    background: #fff;
+
+    $itemSize: 40px;
+    .form-item {
+        position: relative;
+        display: block;
+        min-height: $itemSize;
+        margin-bottom: 10px;
+
+        .form-item-input {
+            width: 100%;
+            height: $itemSize + 1px;
+            // padding: ($itemSize - 24px)*.5 15px ($itemSize - 24px)*.5 50px;
+            padding: ($itemSize - 24px)*.5 0;
+            line-height: 24px;
+            border: none;
+            border-bottom: 1px solid #eee;
+            transition: all 150ms ease-in-out;
+
+            &:focus {
+                border-color: #033;
+            }
+        }
+
+        .img-validcode {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 90px;
+            height: 30px;
+            margin-top: -15px;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+
+            img {
+                display: block;
+                width: 100%;
+            }
+        }
+    }
+
+    .form-item-label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50px;
+        line-height: $itemSize;
+        font-size: 14px;
+        color: #666;
+    }
+
+    .form-btn {
+        margin: 30px 0 20px;
+        text-align: center;
+    }
+
+    .submit-btn {
+        display: block;
+        width: 200px;
+        height: $itemSize;
+        padding: 0;
+        padding-left: 2px;
+        margin: 0 auto;
+        line-height: $itemSize;
+        font-size: 14px;
+        color: #fff;
+        border: none;
+        background: #033;
+        letter-spacing: 2px;
+        transition: all 150ms linear;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+}

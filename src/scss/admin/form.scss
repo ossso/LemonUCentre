@@ -1,0 +1,193 @@
+.form-group {
+    $itemHeight: 48px;
+    .form-item {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .form-item-name {
+        width: 200px;
+        margin: auto 0;
+        padding-right: 20px;
+        line-height: 20px;
+        font-size: 14px;
+        color: #666;
+    }
+    .form-item-value {
+        position: relative;
+        flex: 1;
+    }
+    .form-item-tips {
+        line-height: 1.4;
+        font-size: 12px;
+        color: #aaa;
+    }
+    .form-item-input,
+    .form-item-select {
+        display: block;
+        width: 100%;
+        max-width: 240px;
+        height: $itemHeight;
+        padding: ($itemHeight - 30px)*0.5 15px;
+        line-height: 28px;
+        font-size: 14px;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        transition: all 200ms linear;
+        &:focus {
+            border-color: #aaa;
+        }
+    }
+    .form-item-select:active,
+    .form-item-select:focus,
+    .form-item-select:hover  {
+        outline: 0;
+    }
+    .form-item-textarea {
+        display: block;
+        width: 100%;
+        max-width: 360px;
+        min-width: 240px;
+        min-height: 120px;
+        padding: 10px 15px;
+        line-height: 28px;
+        font-size: 14px;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        transition: all 200ms linear;
+        &:focus {
+            border-color: #aaa;
+        }
+    }
+    .form-item-by-input-password .form-item-input {
+        padding-right: 40px;
+    }
+    .form-item-by-input-copy .form-item-input {
+        color: #999;
+        cursor: pointer;
+        &:focus {
+            border-color: #eee;
+        }
+    }
+    .form-btn-group {
+        padding-left: 200px;
+        .save-btn {
+            display: block;
+            width: 150px;
+            height: 40px;
+            margin: 0;
+            padding: 0;
+            line-height: 40px;
+            font-size: 16px;
+            text-align: center;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            background: #033;
+            cursor: pointer;
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+    }
+    $switchSize: 22px;
+    .form-switch {
+        position: relative;
+        width: $switchSize * 2;
+        height: $switchSize;
+        margin: ($itemHeight - $switchSize - 20px)*0.5 0;
+        border-radius: $switchSize;
+        background: #ccc;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        transition: all 200ms ease-in;
+        box-sizing: content-box;
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: $switchSize;
+            height: $switchSize;
+            margin-top: $switchSize * -0.5;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            background: #fff;
+            transition: all 200ms ease-in;
+        }
+        &.active {
+            border-color: #033;
+            background: #033;
+            &::before {
+                left: $switchSize;
+                border-color: #033;
+            }
+        }
+    }
+    .form-item-by-switch .form-item-value {
+        padding: 9px 0;
+    }
+    .view-password {
+        position: absolute;
+        top: 50%;
+        left: 200px;
+        width: 40px;
+        height: 40px;
+        margin-top: -20px;
+        line-height: 40px;
+        text-align: center;
+        font-size: 20px;
+        color: #ccc;
+        transition: all 200ms linear;
+        cursor: pointer;
+        &:hover {
+            color: #555;
+        }
+    }
+}
+
+.form-block {
+    margin-top: 20px;
+    border-bottom: 1px solid #eee;
+    &:first-child {
+        margin-top: 0;
+    }
+    .form-block-head {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 50px;
+        cursor: pointer;
+        .toggle-arrow {
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 24px;
+            text-align: center;
+            color: #aaa;
+            transition: all 300ms linear;
+        }
+    }
+    .form-block-title {
+        line-height: 50px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #033;
+    }
+    .form-block-content {
+        height: 0;
+        padding-bottom: 0;
+        overflow: hidden;
+        transition: all 300ms ease-in-out;
+        .form-group {
+            padding-bottom: 20px;
+        }
+    }
+    &.active .form-block-head .toggle-arrow {
+        transform: rotate(180deg);
+    }
+}

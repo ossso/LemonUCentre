@@ -1,0 +1,73 @@
+@mixin textHidden {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@mixin linearBG($deg: 0deg, $begin: #fff, $end: #fff) {
+    background: linear-gradient($deg, $begin, $end);
+}
+
+@mixin rightScroll($size: 10px, $thumb: #555, $track: #aaa) {
+    overflow-x: hidden;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+        width: $size;
+        cursor: pointer;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: $size / 2;
+        background: $thumb;
+    }
+    &::-webkit-scrollbar-track {
+        border-radius: $size / 2;
+        background: $track;
+    }
+}
+
+@mixin animate($name, $time: 300ms, $timing: ease-in) {
+    animation-name: $name;
+    animation-timing-function: $timing;
+    animation-duration: $time;
+    animation-fill-mode: both;
+}
+
+@mixin flexBox {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@mixin flexBoxStart {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+@mixin flexBoxEnd {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+@mixin flexBoxCenter {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+@mixin flexBoxVer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@function getrem($pixel: 10px, $scale: .5) {
+    @return $pixel/100px*$scale+rem;
+}

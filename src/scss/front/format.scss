@@ -1,0 +1,132 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+body {
+    line-height: 2;
+    font-size: 14px;
+    font-family: 'Microsoft Yahei', 'PingFang SC', 'HanHei SC', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif;
+    color: #444;
+    background: #fff;
+}
+ul,
+ol,
+li {
+    list-style: none;
+}
+html,
+body,
+h1,h2,h3,h4,h5,h6,
+ul,li,ol,
+blockquote,
+pre,
+p,
+table,tbody,th,td,tr,
+span {
+    margin: 0;
+    padding: 0;
+    border-radius: 0px;
+}
+img {
+    border: none;
+    outline: none;
+}
+input[type="text"],
+input[type="text"]:focus,
+input[type="text"]:active,
+input[type="email"],
+input[type="email"]:focus,
+input[type="email"]:active,
+input[type="number"],
+input[type="number"]:focus,
+input[type="number"]:active,
+input[type="password"],
+input[type="password"]:focus,
+input[type="password"]:active,
+textarea,
+textarea:active,
+textarea:focus,
+button,
+button:active,
+button:focus,
+button:invalid,
+a:active,
+a:visited,
+a:link {
+    outline: 0;
+    outline-color: transparent;
+    -webkit-appearance: none;
+}
+a:link,
+a:visited {
+    text-decoration:none;
+}
+a:hover {
+    color: #08a;
+}
+a {
+    color: #369;
+    transition: color 150ms linear;
+    cursor: pointer;
+}
+select:active,
+select:focus,
+select:hover {
+    outline: 0;
+    outline-color: transparent;
+}
+
+// 默认盒模型为border-box
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-weight: normal;
+}
+
+.fl {
+    float:left;
+}
+.fr {
+    float:right;
+}
+.clear,
+.clear::before,
+.clear::after {
+    clear: both;
+}
+.clear::before,
+.clear::after {
+    content: '';
+    display: table;
+}
+
+.tran-thumb {
+    position: relative;
+    overflow: hidden;
+    img {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: 100%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.ver-thumb {
+    position: relative;
+    overflow: hidden;
+    img {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        transform: translate(-50%, -50%);
+    }
+}

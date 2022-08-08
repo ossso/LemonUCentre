@@ -1,0 +1,36 @@
+// compileCompressed: ../../static/css/front.css
+// compileExpanded: ../../static/css/front.css
+@import "mixin";
+@import "keyframes";
+@import "front/format";
+@import "front/footer";
+@import "front/login";
+@import "front/reg";
+@import "front/email-active";
+@import "front/forgotten";
+@import "front/ucenter";
+@import "front/setting";
+@import "front/verification";
+
+body {
+    min-width: 1080px;
+}
+.iframe-body {
+    min-width: auto;
+}
+
+img {
+    @include animate(fadeIn, 200ms);
+}
+
+.avatar {
+    display: block;
+    img {
+        display: block;
+        width: 100%;
+    }
+}
+
+*[data-copy] {
+    cursor: pointer;
+}

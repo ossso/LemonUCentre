@@ -1,0 +1,139 @@
+.table-group {
+    .table-main {
+        width: 100%;
+        border-collapse: collapse;
+        border: none;
+        thead {
+            background: #f6f8f9;
+        }
+        th {
+            padding: 0 10px;
+            line-height: 60px;
+            font-weight: normal;
+            text-align: left;
+            color: #666;
+        }
+        td {
+            line-height: 26px;
+            padding: 12px 10px;
+        }
+        tbody {
+            tr {
+                border-bottom: 1px solid #eee;
+            }
+        }
+    }
+    .copy-code {
+        cursor: pointer;
+    }
+    .value {
+        display: block;
+    }
+    $checkBoxSize: 20px;
+    .table-checkbox {
+        display: inline-block;
+        width: $checkBoxSize;
+        height: $checkBoxSize;
+        line-height: ($checkBoxSize - 2px);
+        text-align: center;
+        font-size: 14px;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        color: #fff;
+        background: #fff;
+        text-align: center;
+        cursor: pointer;
+        transition: all 200ms ease-in;
+        &:hover {
+            border-color: #ccc;
+        }
+        &.active {
+            border-color: #033;
+            background: #033;
+        }
+        .ant-minus {
+            color: #033;
+        }
+    }
+    .option-cell {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        .info {
+            height: 36px;
+            margin: 6px 10px 6px 0;
+            line-height: 36px;
+            font-size: 14px;
+            color: #888;
+        }
+    }
+    .option-btn {
+        display: block;
+        height: 36px;
+        margin: 6px 10px 6px 0;
+        line-height: 36px;
+        font-size: 14px;
+        color: #3a6ea5;
+        cursor: pointer;
+    }
+    .checked-option {
+        padding: 0 10px;
+        background: #f8f8f8;
+    }
+}
+
+.table-group-pagebar {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 10px;
+    .page-item {
+        min-width: 32px;
+        height: 32px;
+        padding: 0 10px;
+        line-height: 32px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 14px;
+        color: #aaa;
+        cursor: pointer;
+        &:hover {
+            color: #033;
+            .normal {
+                display: none;
+            }
+            .hover {
+                display: inline;
+            }
+        }
+        &.active {
+            color: #033;
+        }
+        .hover {
+            display: none;
+        }
+    }
+    .page-more {
+        min-width: 32px;
+        height: 32px;
+        padding: 0 10px;
+        margin-right: 10px;
+        line-height: 32px;
+        text-align: center;
+        font-size: 14px;
+        color: #888;
+        background: #f5f5f5;
+    }
+}
+
+.fade-visible-enter,
+.fade-visible-leave-to {
+    opacity: 0;
+}
+
+.fade-visible-enter-active,
+.fade-visible-leave-active {
+    transition: all 200ms ease-in-out;
+}

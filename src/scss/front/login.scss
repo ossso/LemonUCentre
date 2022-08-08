@@ -1,0 +1,326 @@
+
+.login-body {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 720px;
+    min-height: 600px;
+    background: #033;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 0;
+        left: 0;
+        height: 100%;
+        border-top-left-radius: 50%;
+        border-top-right-radius: 50%;
+        background: #eee;
+        transition: all 300ms ease-in-out;
+    }
+
+    @media screen and (max-width: 768px) {
+        min-width: 480px;
+        min-height: auto;
+
+        &::before {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        min-width: auto;
+        background: #eee;
+        &::before {
+            display: none;
+        }
+    }
+
+    .page-footer {
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+        left: 0;
+        line-height: 30px;
+        text-align: center;
+        font-size: 12px;
+        color: #555;
+    }
+}
+
+.login-main {
+    position: relative;
+    width: 360px;
+    margin: auto;
+    padding: 20px 50px;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 20px 40px rgba(0, 51, 51, 0.1);
+    z-index: 10;
+
+    @media screen and (max-width: 400px) {
+        width: 100%;
+        padding: 20px 30px;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    @media screen and (max-width: 320px) {
+        padding: 20px 20px;
+    }
+
+    .title {
+        margin-bottom: 10px;
+        line-height: 40px;
+        font-size: 22px;
+        font-weight: bold;
+        text-align: center;
+        color: #033;
+
+        a {
+            color: #033;
+        }
+    }
+
+    .login-options {
+        position: relative;
+        text-align: center;
+        font-size: 0;
+
+        .option-item {
+            line-height: 30px;
+            font-size: 12px;
+            color: #888;
+
+            &::after {
+                content: '|';
+                margin: 0 5px;
+            }
+
+            &:last-child::after {
+                display: none;
+            }
+
+            &:hover {
+                color: #033;
+                text-decoration: underline;
+
+                &::after {
+                    color: #888;
+                }
+            }
+        }
+    }
+
+    .third-group {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    $thirdItemSize: 32px;
+    .third-item {
+        display: block;
+        width: $thirdItemSize;
+        height: $thirdItemSize;
+        margin: 0 5px;
+        line-height: $thirdItemSize;
+        font-size: 18px;
+        text-align: center;
+        color: #fff;
+        border-radius: 50%;
+        background: #aaa;
+        transition: all 150ms linear;
+        cursor: pointer;
+    }
+
+    .third-qq {
+        background: #14baf8;
+
+        &:hover {
+            background: #29c3fd;
+        }
+    }
+
+    .third-wechat {
+        background: #44b549;
+
+        &:hover {
+            background: #2f9833;
+        }
+    }
+
+    .third-weibo {
+        background: #eb7350;
+
+        &:hover {
+            background: #f7671d;
+        }
+    }
+}
+
+.login-form {
+    overflow: hidden;
+    $itemSize: 40px;
+
+    .login-form-item {
+        position: relative;
+        display: block;
+        min-height: $itemSize;
+        margin-bottom: 10px;
+
+        .form-item-input {
+            width: 100%;
+            height: $itemSize + 1px;
+            padding: ($itemSize - 24px)*.5 15px ($itemSize - 24px)*.5 50px;
+            line-height: 24px;
+            border: none;
+            border-bottom: 1px solid #eee;
+            transition: all 150ms ease-in-out;
+
+            &:focus {
+                border-color: #033;
+            }
+        }
+
+        .send-validcode {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 90px;
+            height: 30px;
+            margin-top: -15px;
+            line-height: 30px;
+            font-size: 12px;
+            text-align: center;
+            color: #fff;
+            background: #aaa;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 200ms linear;
+
+            &.active {
+                background: #033;
+                cursor: pointer;
+            }
+
+            &.wait {
+                background: #888;
+                cursor: wait;
+            }
+
+            @media screen and (max-width: 400px) {
+                cursor: auto;
+            }
+        }
+    }
+
+    .login-form-item-label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50px;
+        line-height: $itemSize - 2px;
+        font-size: 14px;
+        color: #666;
+    }
+
+    .login-form-btn {
+        margin: 30px 0 20px;
+        text-align: center;
+    }
+
+    .submit-btn {
+        display: block;
+        width: 200px;
+        height: $itemSize;
+        padding: 0;
+        padding-left: 2px;
+        margin: 0 auto;
+        line-height: $itemSize;
+        font-size: 14px;
+        color: #fff;
+        border: none;
+        border-radius: $itemSize;
+        background: #033;
+        letter-spacing: 2px;
+        transition: all 150ms linear;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.9;
+        }
+
+        @media screen and (max-width: 400px) {
+            cursor: auto;
+        }
+    }
+}
+
+.login-remember {
+    height: 20px;
+    margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    .remember-box {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        line-height: 20px;
+        cursor: pointer;
+
+        @media screen and (max-width: 400px) {
+            cursor: auto;
+        }
+
+        .check-box {
+            display: block;
+            width: 16px;
+            height: 16px;
+            margin: 2px 0;
+            line-height: 13px;
+            font-size: 14px;
+            text-align: center;
+            color: #fff;
+            border: 1px solid #eee;
+            border-radius: 2px;
+            background: #fff;
+            transition: all 200ms ease-in;
+        }
+
+        .value {
+            padding-left: 5px;
+            font-size: 14px;
+            color: #888;
+            transition: all 200ms ease-in;
+        }
+
+        &:hover {
+            .value {
+                color: #444;
+            }
+        }
+
+        &.active {
+            .check-box {
+                border-color: #033;
+                background: #033;
+            }
+
+            .value {
+                color: #033;
+            }
+        }
+    }
+}

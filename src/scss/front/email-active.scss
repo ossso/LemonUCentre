@@ -1,0 +1,58 @@
+.email-active {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 600px;
+    min-height: 400px;
+    background: #eee;
+}
+
+.email-success {
+    width: 100%;
+    max-width: 480px;
+    margin: auto;
+    padding: 30px;
+    text-align: center;
+    border-radius: 12px;
+    background: #fff;
+    h3 {
+        padding-left: 0.5em;
+        line-height: 2;
+        font-size: 28px;
+        font-weight: bold;
+        color: #033;
+    }
+    p {
+        color: #888;
+    }
+    .email-value {
+        font-weight: bold;
+        color: #000;
+    }
+    .to-home {
+        color: #033;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.email-fail {
+    width: 100%;
+    max-width: 480px;
+    margin: auto;
+    padding: 30px;
+    text-align: center;
+    background: #fff;
+    h3 {
+        line-height: 2;
+        font-size: 20px;
+        font-weight: bold;
+        color: #f00;
+    }
+
+    p {
+        color: #888;
+    }
+}
