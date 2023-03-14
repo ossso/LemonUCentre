@@ -1,6 +1,6 @@
 <?php
 /**
- * Lemon会员记录
+ * Lemon 验证码发送记录
  */
 
 namespace LemonUCentre\Models;
@@ -8,12 +8,12 @@ namespace LemonUCentre\Models;
 use Base;
 
 
-class VIPRecord extends Base
+class Captcha extends Base
 {
     public function __construct()
     {
         global $zbp;
-        parent::__construct($zbp->table['LemonUCentreVIPRecord'], $zbp->datainfo['LemonUCentreVIPRecord'], __CLASS__);
+        parent::__construct($zbp->table['LemonUCentreCaptcha'], $zbp->datainfo['LemonUCentreCaptcha'], __CLASS__);
 
         $this->CreateTime = time();
     }
@@ -24,9 +24,9 @@ class VIPRecord extends Base
      */
     public function __set($name, $value)
     {
-        switch($name) {
+        switch ($name) {
             case 'User':
-            case 'ChannelName':
+            case 'TypeName':
                 return;
             break;
             default:
@@ -41,24 +41,22 @@ class VIPRecord extends Base
      */
     public function __get($name)
     {
-        global $zbp, $lemon_uc;
-        switch($name) {
+        global $lemon_uc;
+        switch ($name) {
             case 'User':
-                return $lemon_uc->GetUserByID($this->LUID);
-            break;
-            case 'ChannelName': {
-                switch ($this->Channel) {
+                return $lemon_uc->GetUserByID($this->UID);
+            case 'TypeName': {
+                switch ($this->Type) {
+                    case 1:
+                        return 'Email';
                     default:
                     case 0:
-                        return '系统赠予';
-                    case 1:
-                        return '兑换码';
-                    case 2:
-                        return $lemon_uc->PointsName;
+                        return '手机号码';
                 }
             }
             break;
         }
         return parent::__get($name);
     }
+
 }

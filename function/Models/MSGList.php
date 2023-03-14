@@ -46,10 +46,10 @@ class MSGList extends Base
         global $zbp, $lemon_uc;
         switch($name) {
             case 'FromUser':
-                return $lemon_uc->GetUserByID($this->FromLUID);
+                return $lemon_uc->GetUserByID($this->FromUID);
             break;
             case 'ToUser':
-                return $lemon_uc->GetUserByID($this->ToLUID);
+                return $lemon_uc->GetUserByID($this->ToUID);
             break;
             case 'Content':
                 return $lemon_uc->GetMSGContentByID($this->ContID);

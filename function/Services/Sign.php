@@ -73,7 +73,7 @@ class Sign
         $isIPv4 = Validate::checkIPv4($IPAddress);
 
         $w = array();
-        $w[] = array('=', 'lr_LUID', $user->LemonUser->ID);
+        $w[] = array('=', 'lr_UID', $user->LemonUser->ID);
         $order = array('lr_CreateTime' => 'DESC');
         $loginCount = 0;
         $beforeRecord = $lemon_uc->getLoginRecordList(array('*'), $w, $order, array(1));
@@ -84,7 +84,7 @@ class Sign
 
         $record = new LoginRecord();
         $record->Type = $type;
-        $record->LUID = $user->LemonUser->ID;
+        $record->UID = $user->LemonUser->ID;
         if ($isIPv4) {
             $record->IPv4 = $IPAddress;
         } else {

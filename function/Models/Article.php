@@ -41,7 +41,7 @@ class Article extends Base
         global $zbp, $lemon_uc;
         switch($name) {
             case 'User':
-                return $lemon_uc->GetUserByID($this->LUID);
+                return $lemon_uc->GetUserByID($this->UID);
             case 'Post':
                 return $zbp->GetPostByID($this->LogID);
             default:
@@ -57,7 +57,16 @@ class Article extends Base
     public function LoadInfoByLogID($id)
     {
         $id = (int) $id;
-        $s = $this->db->sql->Select($this->table, array('*'), array(array('=', 'a_LogID', $id)), null, null, null);
+        $s = $this->db->sql->Select(
+            $this->table,
+            array('*'),
+            array(
+                array('=', 'LogID', $id),
+            ),
+            null,
+            null,
+            null,
+        );
 
         $array = $this->db->Query($s);
         if (count($array) > 0) {

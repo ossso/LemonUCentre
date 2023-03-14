@@ -14,7 +14,7 @@ class User extends Base
     {
         global $lemon_uc;
 
-        parent::__construct($lemon_uc->table['User'], $lemon_uc->tableInfo['User'], __CLASS__);
+        parent::__construct($lemon_uc->table['LemonUCentreUser'], $lemon_uc->tableInfo['LemonUCentreUser'], __CLASS__);
 
         $this->UpdateTime = time();
     }
@@ -27,11 +27,11 @@ class User extends Base
     {
         switch($name) {
             case 'Avatar':
-            case 'User':
+            case 'Member':
             case 'Username':
             case 'Nickname':
-            case 'GenderName':
-            case 'VIPDate':
+            case 'GenderLabel':
+            case 'VIP':
             case 'InviteCode':
             case 'CheckIn':
             case 'CheckInToday':
@@ -52,34 +52,33 @@ class User extends Base
     {
         global $zbp, $lemon_uc;
         switch($name) {
-            case 'User':
+            case 'Member':
                 return $zbp->GetMemberByID($this->UID);
             case 'Username':
-                return $this->User->Name;
+                return $this->Member->Name;
             case 'Nickname':
-                return $this->User->StaticName;
+                return $this->Member->StaticName;
             case 'Avatar':
                 if (!empty($this->AvatarUrl)) {
                     return $this->AvatarUrl;
                 }
-                return $this->User->Avatar;
-            case 'GenderName':
+                return $this->Member->Avatar;
+            case 'GenderLabel':
                 if ($this->Gender == 1) {
                     return '男';
-                } else if ($this->Gender == 2) {
+                } else
+                if ($this->Gender == 2) {
                     return '女';
                 }
-                return '保密';
-            case 'VIPDate':
-                if ($this->VIPType > 0 && $this->VIPDate > 0) {
-                    return date('Y-m-d', (int) $this->VIPDate);
-                }
+                return '未知';
+            // TODO 处理VIP查询
+            case 'VIP':
                 return '';
             case 'InviteCode':
                 if (empty($this->Code) && $this->ID > 0) {
                     $code = $lemon_uc->getUniqueInviteCode(false);
                     $this->Code = $code;
-                    $this->Save();
+                    $this->SystemSave();
                 }
                 return $this->Code;
             /**
@@ -87,9 +86,9 @@ class User extends Base
              */
             case 'CheckIn':
                 $checkin = new CheckIn();
-                $checkin->LoadInfoByLUID($LUID);
-                if ($checkin->LUID == 0) {
-                    $checkin->LUID = $LUID;
+                $checkin->LoadInfoByUID($UID);
+                if ($checkin->UID == 0) {
+                    $checkin->UID = $UID;
                     $checkin->Save();
                 }
                 return $checkin;

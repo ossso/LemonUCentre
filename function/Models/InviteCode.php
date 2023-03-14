@@ -8,12 +8,12 @@ namespace LemonUCentre\Models;
 use Base;
 
 
-class InvitationCode extends Base
+class InviteCode extends Base
 {
     public function __construct()
     {
         global $zbp;
-        parent::__construct($zbp->table['LemonUCentreInvitationCode'], $zbp->datainfo['LemonUCentreInvitationCode'], __CLASS__);
+        parent::__construct($zbp->table['LemonUCentreInviteCode'], $zbp->datainfo['LemonUCentreInviteCode'], __CLASS__);
 
         $this->CreateTime = time();
     }
@@ -43,7 +43,7 @@ class InvitationCode extends Base
         global $zbp, $lemon_uc;
         switch ($name) {
             case 'User': 
-                return $lemon_uc->GetUserByID($this->LUID);
+                return $lemon_uc->GetUserByID($this->UID);
             break;
         }
         return parent::__get($name);
@@ -57,7 +57,7 @@ class InvitationCode extends Base
     public function LoadInfoByCode($code)
     {
         $s = $this->db->sql->Select($this->table, array('*'), array(
-            array('=', 'ic_Code', $code),
+            array('=', 'Code', $code),
         ), null, null, null);
         $array = $this->db->Query($s);
         if (count($array) > 0) {

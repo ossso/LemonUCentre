@@ -14,39 +14,69 @@ function defineTable(&$table = [], &$tableInfo = [])
         'User' => array(
             'name'          => '%pre%lemon_uc_user',
             'info'          => array(
-                'ID'            => array('u_ID', 'integer', '', 0),
-                'UID'           => array('u_UID', 'integer', '', 0),
-                'VIPType'       => array('u_VIPType', 'integer', 'tinyint', 0), // VIP身份
-                'VIPTime'       => array('u_VIPTime', 'integer', 'bigint', 0), // VIP有效期
-                'Points'        => array('u_Points', 'integer', '', 0), // 积分
-                'AvatarUrl'     => array('u_AvatarUrl', 'string', 255, ''), // 头像
-                'Gender'        => array('u_Gender', 'integer', 'tinyint', 0), // 性别 0未知 | 1男 | 2女
-                'Age'           => array('u_Age', 'integer', 'tinyint', 0), // 年龄
-                'Phone'         => array('u_Phone', 'string', 20, ''), // 手机号码
-                'Phoned'        => array('u_Phoned', 'integer', '', 0), // 手机号码是否认证 时间戳
-                'Email'         => array('u_Email', 'string', 255, ''), // 邮箱地址
-                'Emailed'       => array('u_Emailed', 'integer', '', 0), // 邮箱地址是否认证 时间戳
-                'Code'          => array('u_Code', 'string', 10, ''), // 用户邀请码Code
-                'Token'         => array('u_Token', 'string', 255, ''), // 最后登录Token
-                'CollectNums'   => array('u_CollectNums', 'integer', '', 0), // 被收藏总数
-                'LikeNums'      => array('u_LikeNums', 'integer', '', 0), // 收获点赞总数
-                'FansNums'      => array('u_FansNums', 'integer', '', 0), // 粉丝总数
-                'UpdateTime'    => array('u_UpdateTime', 'integer', 'bigint', 0), // 最后活跃时间
-                'Meta'          => array('u_Meta', 'string', '', ''),
+                'ID'            => array('ID', 'integer', '', 0),
+                'MemberID'      => array('MemberID', 'integer', '', 0, '用户ID'),
+                'AvatarUrl'     => array('AvatarUrl', 'string', 256, '', '头像'),
+                'Gender'        => array('Gender', 'integer', 'tinyint', 0, '性别 0未知 | 1男 | 2女'),
+                'Age'           => array('Age', 'integer', 'tinyint', 0, '年龄'),
+                'Phone'         => array('Phone', 'string', 20, '', '手机号码'),
+                'Phoned'        => array('Phoned', 'integer', '', 0, '手机号码是否认证 时间戳'),
+                'Email'         => array('Email', 'string', 256, '', '邮箱地址'),
+                'Emailed'       => array('Emailed', 'integer', '', 0, '邮箱地址是否认证 时间戳'),
+                'Code'          => array('Code', 'string', 10, '', '用户邀请码Code'),
+                'Token'         => array('Token', 'string', 64, '', '最后登录Token'),
+                'CollectNums'   => array('CollectNums', 'integer', '', 0, '被收藏总数'),
+                'LikeNums'      => array('LikeNums', 'integer', '', 0, '被点赞总数'),
+                'FansNums'      => array('FansNums', 'integer', '', 0, '粉丝总数'),
+                'UpdateTime'    => array('UpdateTime', 'integer', 'bigint', 0, '最后活跃时间'),
+                'City'          => array('City', 'string', 128, '', '城市'),
+                'Province'      => array('Province', 'string', 128, '', '省份'),
+                'Country'       => array('Country', 'string', 128, '', '国家'),
+                'Meta'          => array('Meta', 'string', '', ''),
             ),
         ),
         /**
-         * 文章拓展表
+         * 关注记录表
          */
-        'Article' => array(
-            'name'          => '%pre%lemon_uc_article',
+        'Follow' => array(
+            'name'          => '%pre%lemon_uc_follow',
             'info'          => array(
-                'ID'            => array('a_ID', 'integer', '', 0),
-                'LogID'         => array('a_LogID', 'integer', '', 0),
-                'Status'        => array('a_Status', 'integer', 'tinyint', 0),
-                'CollectNums'   => array('a_CollectNums', 'integer', '', 0), // 收藏总数
-                'LikeNums'      => array('a_LikeNums', 'integer', '', 0), // 点赞总数
-                'Meta'          => array('a_Meta', 'string', '', ''),
+                'ID'            => array('ID', 'integer', '', 0),
+                'UID'           => array('UID', 'integer', '', 0, 'Lemon用户ID'),
+                'FollowID'      => array('FollowID', 'integer', '', 0, '被关注Lemon用户ID'), 
+                'CreateTime'    => array('CreateTime', 'integer', 'bigint', 0, '关注时间'),
+                'Meta'          => array('Meta', 'string', '', ''),
+            ),
+        ),
+        /**
+         * 验证码
+         */
+        'Captcha' => array(
+            'name'          => '%pre%lemon_uc_captcha',
+            'info'          => array(
+                'ID'            => array('ID', 'integer', '', 0),
+                'UID'           => array('UID', 'integer', '', 0, '触发人Lemon用户ID'),
+                'Type'          => array('Type', 'integer', 'tinyint', 0, '0手机号码 | 1邮箱地址'),
+                'Status'        => array('Status', 'integer', 'tinyint', 0, '是否验证: 0 | 1'),
+                'Code'          => array('Code', 'string', 32, '', '验证码'),
+                'CreateTime'    => array('CreateTime', 'integer', 'bigint', 0, '创建时间'),
+                'PassTime'      => array('PassTime', 'integer', 'bigint', 0, '验证时间'),
+                'Meta'          => array('Meta', 'string', '', ''),
+            ),
+        ),
+        /**
+         * 登录记录日志
+         */
+        'SignIn' => array(
+            'name'          => '%pre%lemon_uc_sign_in',
+            'info'          => array(
+                'ID'            => array('ID', 'integer', '', 0),
+                'UID'           => array('UID', 'integer', '', 0, 'Lemon用户ID'),
+                'Type'          => array('Type', 'integer', '', 0, '登录方式 0:账号密码 | 1000:QQ | 1001:WeChat | 1002:Weibo'),
+                'IP'            => array('IP', 'string', 50, '', 'IP地址'),
+                'Token'         => array('Token', 'string', 64, '', '本次登录的token'),
+                'CreateTime'    => array('CreateTime', 'integer', 'bigint', 0, '创建时间'),
+                'Meta'          => array('Meta', 'string', '', ''),
             ),
         ),
         /**
@@ -55,24 +85,24 @@ function defineTable(&$table = [], &$tableInfo = [])
         'CheckIn' => array(
             'name'          => '%pre%lemon_uc_checkin',
             'info'          => array(
-                'ID'            => array('ck_ID', 'integer', '', 0),
-                'LUID'          => array('ck_LUID', 'integer', '', 0),
-                'Count'         => array('ck_Count', 'integer', '', 0), // 签到天数
-                'CheckTime'     => array('ck_CheckTime', 'integer', 'bigint', 0), // 签到时间
-                'Meta'          => array('ck_Meta', 'string', '', ''),
+                'ID'            => array('ID', 'integer', '', 0),
+                'UID'           => array('UID', 'integer', '', 0, 'Lemon用户ID'),
+                'Count'         => array('Count', 'integer', '', 0, '签到天数'),
+                'LastTime'      => array('LastTime', 'integer', 'bigint', 0, '最后签到时间'),
+                'Meta'          => array('Meta', 'string', '', ''),
             ),
         ),
         /**
-         * 签到记录表
+         * 签到日志表
          */
-        'CheckInRecord' => array(
-            'name'          => '%pre%lemon_uc_checkin_record',
+        'CheckInLogs' => array(
+            'name'          => '%pre%lemon_uc_checkin_logs',
             'info'          => array(
-                'ID'            => array('ckr_ID', 'integer', '', 0),
-                'CKID'          => array('ckr_CKID', 'integer', '', 0),
-                'LUID'          => array('ckr_LUID', 'integer', '', 0),
-                'CreateTime'    => array('ckr_CreateTime', 'integer', 'bigint', 0),
-                'Meta'          => array('ckr_Meta', 'string', '', ''),
+                'ID'            => array('ID', 'integer', '', 0),
+                'CheckInID'     => array('CheckInID', 'integer', '', 0, 'CheckIn表ID'),
+                'UID'           => array('UID', 'integer', '', 0, 'Lemon用户ID'),
+                'CreateTime'    => array('CreateTime', 'integer', 'bigint', 0, '签到时间'),
+                'Meta'          => array('Meta', 'string', '', ''),
             ),
         ),
         /**
@@ -81,33 +111,17 @@ function defineTable(&$table = [], &$tableInfo = [])
         'Social' => array(
             'name'          => '%pre%lemon_uc_social',
             'info'          => array(
-                'ID'            => array('sc_ID', 'integer', '', 0),
-                'LUID'          => array('sc_LUID', 'integer', '', 0), // LemonUser ID
-                'Type'          => array('sc_Type', 'integer', '', 0), // 0:QQ | 1:WeChat | 2:Weibo
-                'OpenID'        => array('sc_OpenID', 'string', 255, ''),
-                'UnionID'       => array('sc_UnionID', 'string', 255, ''),
-                'Token'         => array('sc_Token', 'string', 255, ''), 
-                'Nickname'      => array('sc_Nickname', 'string', 30, ''), // 昵称
-                'Avatar'        => array('sc_Avatar', 'string', 255, ''), // 头像地址
-                'CreateTime'    => array('sc_CreateTime', 'integer', 'bigint', 0),
-                'UpdateTime'    => array('sc_UpdateTime', 'integer', 'bigint', 0),
-                'Meta'          => array('sc_Meta', 'string', '', ''),
-            ),
-        ),
-        /**
-         * 验证码发送记录
-         */
-        'CaptchaRecord' => array(
-            'name'          => '%pre%lemon_uc_captcha_record',
-            'info'          => array(
-                'ID'            => array('cr_ID', 'integer', '', 0),
-                'Type'          => array('cr_Type', 'integer', '', 0), // 0手机号码 | 1邮箱地址
-                'Status'        => array('cr_Status', 'integer', 'tinyint', 0), // 是否验证
-                'Account'       => array('cr_Account', 'string', 255, ''), // 相关账号
-                'Code'          => array('cr_Code', 'string', 20, ''), // 验证码
-                'CreateTime'    => array('cr_CreateTime', 'integer', 'bigint', 0), // 创建时间
-                'PassTime'      => array('cr_PassTime', 'integer', 'bigint', 0), // 验证时间
-                'Meta'          => array('cr_Meta', 'string', '', ''),
+                'ID'            => array('ID', 'integer', '', 0),
+                'UID'           => array('UID', 'integer', '', 0, 'Lemon用户ID'),
+                'Platform'      => array('Platform', 'integer', '', 0, '0:QQ | 1:WeChat | 2:Weibo'),
+                'OpenID'        => array('OpenID', 'string', 256, '', '平台OPENID'),
+                'UnionID'       => array('UnionID', 'string', 256, '', '平台UNIONID'),
+                'Token'         => array('Token', 'string', 256, '', '通常是AccessToken'), 
+                'Nickname'      => array('Nickname', 'string', 128, '', '昵称'),
+                'Avatar'        => array('Avatar', 'string', 256, '', '头像地址'),
+                'CreateTime'    => array('CreateTime', 'integer', 'bigint', 0, '创建时间'),
+                'UpdateTime'    => array('UpdateTime', 'integer', 'bigint', 0, '更新时间'),
+                'Meta'          => array('Meta', 'string', '', ''),
             ),
         ),
         /**
@@ -116,30 +130,29 @@ function defineTable(&$table = [], &$tableInfo = [])
         'InviteCode' => array(
             'name'          => '%pre%lemon_uc_invite_code',
             'info'          => array(
-                'ID'            => array('ic_ID', 'integer', '', 0),
-                'LUID'          => array('ic_LUID', 'integer', '', 0), // LemonUser ID
-                'Code'          => array('ic_Code', 'string', 20, ''), // 邀请码
-                'Type'          => array('ic_Type', 'integer', '', 0), // 0 一次性邀请码 || 1 用户邀请码
-                'Status'        => array('ic_Status', 'integer', 'tinyint', 0),
-                'CreateTime'    => array('ic_CreateTime', 'integer', 'bigint', 0), // 创建时间
-                'UseTime'       => array('ic_UseTime', 'integer', 'bigint', 0), // 使用时间
-                'Meta'          => array('ic_Meta', 'string', '', ''),
+                'ID'            => array('ID', 'integer', '', 0),
+                'UID'           => array('UID', 'integer', '', 0, 'Lemon用户ID'),
+                'Code'          => array('Code', 'string', 20, '', '邀请码内容'),
+                'Type'          => array('Type', 'integer', '', 0, '0 一次性邀请码 || 1 用户生成邀请码'),
+                'Status'        => array('Status', 'integer', 'tinyint', 0, '邀请码状态'),
+                'CreateTime'    => array('CreateTime', 'integer', 'bigint', 0, '创建时间'),
+                'UseTime'       => array('UseTime', 'integer', 'bigint', 0, '使用时间'),
+                'Meta'          => array('Meta', 'string', '', ''),
             ),
         ),
         /**
-         * 兑换码类型
+         * 兑换码产品
          */
-        'RedeemType' => array(
-            'name'          => '%pre%lemon_uc_redeem_type',
+        'RedeemCodeProduct' => array(
+            'name'          => '%pre%lemon_uc_redeem_code_product',
             'info'          => array(
-                'ID'            => array('rt_ID', 'integer', '', 0),
-                'Lock'          => array('rt_Lock', 'integer', 'tinyint', 0), // 是否锁定Code不允许编辑
-                'Name'          => array('rt_Name', 'string', 40, ''), // 类型名称
-                'Code'          => array('rt_Code', 'string', 100, ''), // 类型识别码
-                'Symbol'        => array('rt_Symbol', 'string', 100, ''), // 兑换值计量单位
-                'Order'         => array('rt_Order', 'integer', '', 0), // 类型排序数值
-                'Remark'        => array('rt_Remark', 'string', 255, ''), // 类型备注
-                'Meta'          => array('rc_Meta', 'string', '', ''),
+                'ID'            => array('ID', 'integer', '', 0),
+                'Lock'          => array('Lock', 'integer', 'tinyint', 0, '状态，是否锁定Code不允许编辑'),
+                'Name'          => array('Name', 'string', 40, '', '类型名称'),
+                'Symbol'        => array('Symbol', 'string', 100, '', '兑换值计量单位'),
+                'Order'         => array('Order', 'integer', '', 0, '类型排序数值'),
+                'Content'       => array('Content', 'string', '', '', '类型说明'),
+                'Meta'          => array('Meta', 'string', '', ''),
             ),
         ),
         /**
@@ -148,53 +161,33 @@ function defineTable(&$table = [], &$tableInfo = [])
         'RedeemCode' => array(
             'name'          => '%pre%lemon_uc_redeem_code',
             'info'          => array(
-                'ID'            => array('rc_ID', 'integer', '', 0),
-                'Status'        => array('rc_Status', 'integer', 'tinyint', 0), // 状态
-                'TypeID'        => array('rc_TypeID', 'integer', '', 0), // 关联类型ID
-                'LUID'          => array('rc_LUID', 'integer', '', 0), // 创建用户
-                'UseID'         => array('rc_UseID', 'integer', '', 0), // 使用用户
-                'Value'         => array('rc_Value', 'integer', '', 0), // 兑换值
-                'Code'          => array('rc_Code', 'string', 255, ''), // 兑换码
-                'CreateTime'    => array('rc_CreateTime', 'integer', 'bigint', 0), // 创建时间
-                'UseTime'       => array('rc_UseTime', 'integer', 'bigint', 0), // 使用时间
-                'Meta'          => array('rc_Meta', 'string', '', ''),
+                'ID'            => array('ID', 'integer', '', 0),
+                'Status'        => array('Status', 'integer', 'tinyint', 0, '状态'),
+                'ProductID'     => array('ProductID', 'integer', '', 0, '类型ID'),
+                'UID'           => array('UID', 'integer', '', 0, '创建的Lemon用户'),
+                'UseUID'        => array('UseUID', 'integer', '', 0, '使用的Lemon用户'),
+                'Value'         => array('Value', 'integer', '', 0, '兑换值'),
+                'Code'          => array('Code', 'string', 256, '', '兑换码'),
+                'CreateTime'    => array('CreateTime', 'integer', 'bigint', 0, '创建时间'),
+                'UseTime'       => array('UseTime', 'integer', 'bigint', 0, '使用时间'),
+                'Meta'          => array('Meta', 'string', '', ''),
             ),
         ),
         /**
-         * 统计表
+         * 积分分类表
          */
-        'Statistics'    => array(
-            'name'          => '%pre%lemon_uc_statistics',
+        'PointCate' => array(
+            'name'          => '%pre%lemon_uc_point_cate',
             'info'          => array(
-                'ID'            => array('st_ID', 'integer', '', 0),
-                'DateKey'       => array('st_DateKey', 'integer', '', 0),
-                'RegCount'      => array('st_RegCount', 'integer', '', 0),
-                'LoginCount'    => array('st_LoginCount', 'integer', '', 0),
-                'VIPCount'      => array('st_VIPCount', 'integer', '', 0),
-                'VIPLoginCount' => array('st_VIPLoginCount', 'integer', '', 0),
-                'CollectCount'  => array('st_CollectCount', 'integer', '', 0),
-                'LikeCount'     => array('st_LikeCount', 'integer', '', 0),
-                'Meta'          => array('st_Meta', 'string', '', ''),
-            ),
-        ),
-        /**
-         * 登录记录
-         */
-        'LoginRecord' => array(
-            'name'          => '%pre%lemon_uc_login_record',
-            'info'          => array(
-                'ID'            => array('lr_ID', 'integer', '', 0),
-                'LUID'          => array('lr_LUID', 'integer', '', 0), // LemonUser ID
-                'Type'          => array('lr_Type', 'integer', '', 0), // 登录方式 0:账号密码 | 1000:QQ | 1001:WeChat | 1002:Weibo
-                'IPv4'          => array('lr_IPv4', 'string', 50, ''), // IPv4
-                'IPv6'          => array('lr_IPv6', 'string', 50, ''), // IPv6
-                'City'          => array('lr_City', 'string', 255, ''), // 城市
-                'Province'      => array('lr_Province', 'string', 255, ''), // 省份
-                'Country'       => array('lr_Country', 'string', 255, ''), // 国家
-                'Token'         => array('lr_Token', 'string', 255, ''), // token
-                'Count'         => array('lr_Count', 'integer', '', 0), // 登录次数
-                'CreateTime'    => array('lr_CreateTime', 'integer', 'bigint', 0), // 创建时间
-                'Meta'          => array('lr_Meta', 'string', '', ''),
+                'ID'            => array('ID', 'integer', '', 0),
+                'Status'        => array('Status', 'integer', 'tinyint', 0, '状态：0停用 1启用'),
+                'Name'          => array('Name', 'string', 50, '', '积分名称'),
+                'Level'         => array('Level', 'integer', '', 0, '积分级别'),
+                'Icon'          => array('Icon', 'string', 256, '', '积分Icon图标'),
+                'Logo'          => array('Logo', 'string', 256, '', '积分Logo图标'),
+                'CreateTime'    => array('CreateTime', 'integer', 'bigint', 0, '操作时间'),
+                'Content'       => array('Content', 'string', '', '', '积分说明'),
+                'Meta'          => array('Meta', 'string', '', ''),
             ),
         ),
         /**
@@ -203,88 +196,143 @@ function defineTable(&$table = [], &$tableInfo = [])
         'PointRecord' => array(
             'name'          => '%pre%lemon_uc_point_record',
             'info'          => array(
-                'ID'            => array('pr_ID', 'integer', '', 0),
-                'LUID'          => array('pr_LUID', 'integer', '', 0),
-                'Type'          => array('pr_Type', 'integer', 'tinyint', 0), // 类型 0 获得 1 消耗
-                'Value'         => array('pr_Value', 'integer', '', 0), // 操作积分
-                'Count'         => array('pr_Count', 'integer', '', 0), // 操作后总分
-                'Note'          => array('pr_Note', 'string', 255, ''), // 操作备注
-                'CreateTime'    => array('pr_CreateTime', 'integer', 'bigint', 0), // 操作时间
-                'Meta'          => array('pr_Meta', 'string', '', ''),
+                'ID'            => array('ID', 'integer', '', 0),
+                'UID'           => array('UID', 'integer', '', 0, 'Lemon用户ID'),
+                'CateID'        => array('CateID', 'integer', '', 0, '积分类型'),
+                'Value'         => array('Value', 'integer', '', 0, '积分总值'),
+                'CreateTime'    => array('CreateTime', 'integer', 'bigint', 0, '操作时间'),
+                'Remark'        => array('Remark', 'string', '', '', '备注'),
+                'Meta'          => array('Meta', 'string', '', ''),
             ),
         ),
         /**
-         * 会员记录表
+         * 积分日志表
          */
-        'VIPRecord' => array(
-            'name'          => '%pre%lemon_uc_vip_record',
+        'PointLogs' => array(
+            'name'          => '%pre%lemon_uc_point_logs',
             'info'          => array(
-                'ID'            => array('vr_ID', 'integer', '', 0),
-                'LUID'          => array('vr_LUID', 'integer', '', 0),
-                'Value'         => array('vr_Value', 'integer', '', 0), // 操作时长 - 天数
-                'EndTime'       => array('vr_EndTime', 'integer', 'bigint', 0), // 操作后到期时间
-                'Note'          => array('vr_Note', 'string', 255, ''), // 操作备注
-                'Channel'       => array('vr_Channel', 'integer', '', 0), // 渠道 0:系统赠予 1:兑换码 2:积分
-                'CreateTime'    => array('vr_CreateTime', 'integer', 'bigint', 0), // 操作时间
-                'Meta'          => array('vr_Meta', 'string', '', ''),
+                'ID'            => array('ID', 'integer', '', 0),
+                'UID'           => array('UID', 'integer', '', 0, 'Lemon用户ID'),
+                'Type'          => array('Type', 'integer', 'tinyint', 0, '类型：0获得 1消耗'),
+                'CateID'        => array('CateID', 'integer', '', 0, '积分分类ID'),
+                'Value'         => array('Value', 'integer', '', 0, '操作积分'),
+                'Count'         => array('Count', 'integer', '', 0, '操作后总分'),
+                'CreateTime'    => array('CreateTime', 'integer', 'bigint', 0, '操作时间'),
+                'Remark'        => array('Remark', 'string', '', '', '操作备注'),
+                'Meta'          => array('Meta', 'string', '', ''),
             ),
         ),
         /**
-         * 收藏表
+         * 会员类型表
+         */
+        'VIPCate' => array(
+            'name'          => '%pre%lemon_uc_vip_cate',
+            'info'          => array(
+                'ID'            => array('ID', 'integer', '', 0),
+                'Status'        => array('Status', 'integer', 'tinyint', 0, '状态：0停用 1启用'),
+                'Name'          => array('Name', 'integer', '', 0, '会员类型名称'),
+                'Level'         => array('Level', 'integer', '', 0, '会员类型所属等级'),
+                'Icon'          => array('Icon', 'string', 256, '', '会员Icon图标'),
+                'Logo'          => array('Logo', 'string', 256, '', '会员Logo图标'),
+                'CreateTime'    => array('CreateTime', 'integer', 'bigint', 0, '操作时间'),
+                'Content'       => array('Content', 'string', '', '', '会员类型说明'),
+                'Meta'          => array('Meta', 'string', '', ''),
+            ),
+        ),
+        /**
+         * 奖励规则
+         * 控制兑换码兑换内容
+         * 控制积分兑换内容
+         * 控制签到兑换内容
+         */
+        'AwardRule' => array(
+            'name'          => '%pre%lemon_uc_award_rule',
+            'info'          => array(
+                'ID'            => array('ID', 'integer', '', 0),
+                'Name'          => array('Name', 'string', 50, '', '规则名称'),
+                'Status'        => array('Status', 'integer', 'tinyint', 0, '状态：0停用 1启用'),
+                'Cate'          => array('Cate', 'integer', '', 0, '适用分类 0:签到 | 1:注册 | 2:兑换码 | 3:积分'),
+                'Type'          => array('Type', 'integer', '', 0, '奖励类型 0:积分 | 1:会员 | 2:兑换码 | 3:邀请码 | 4:文章阅读权限 | 1000+自定义内容'),
+                'Relation'      => array('Relation', 'integer', '', 0, '奖励类型关联值，涉及积分类型、会员类型、兑换码类型等'),
+                'Value'         => array('Value', 'integer', '', 0, '奖励值，需要参考插件WiKi'),
+                'Remark'        => array('Remark', 'string', 256, '', '备注'),
+                'CreateTime'    => array('CreateTime', 'integer', 'bigint', 0, '创建时间'),
+                'UpdateTime'    => array('UpdateTime', 'integer', 'bigint', 0, '操作时间'),
+                'Meta'          => array('Meta', 'string', '', ''),
+            ),
+        ),
+        /**
+         * 奖励日志表
+         */
+        'AwardLogs' => array(
+            'name'          => '%pre%lemon_uc_award_logs',
+            'info'          => array(
+                'ID'            => array('ID', 'integer', '', 0),
+                'UID'           => array('UID', 'integer', '', 0, 'Lemon用户ID'),
+                'RuleID'        => array('RuleID', 'integer', '', 0, '执行的规则ID'),
+                'Status'        => array('Status', 'integer', 'tinyint', 0, '执行状态：0未执行 | 1执行成功 | 2执行失败'),
+                'CreateTime'    => array('CreateTime', 'integer', 'bigint', 0, '创建时间'),
+                'UpdateTime'    => array('UpdateTime', 'integer', 'bigint', 0, '操作时间'),
+                'Remark'        => array('Remark', 'string', '', '', '操作备注'),
+                'Meta'          => array('Meta', 'string', '', ''),
+            ),
+        ),
+        /**
+         * 文章拓展表
+         */
+        'Article' => array(
+            'name'          => '%pre%lemon_uc_article',
+            'info'          => array(
+                'ID'            => array('ID', 'integer', '', 0),
+                'LogID'         => array('LogID', 'integer', '', 0, '文章ID(LOG表)'),
+                'Status'        => array('Status', 'integer', 'tinyint', 0, '状态'),
+                'CollectNums'   => array('CollectNums', 'integer', '', 0, '收藏总数'),
+                'LikeNums'      => array('LikeNums', 'integer', '', 0, '点赞总数'),
+                'Meta'          => array('Meta', 'string', '', ''),
+            ),
+        ),
+        /**
+         * 收藏记录表
          */
         'Collect' => array(
             'name'          => '%pre%lemon_uc_collect',
             'info'          => array(
-                'ID'            => array('cc_ID', 'integer', '', 0),
-                'LUID'          => array('cc_LUID', 'integer', '', 0),
-                'LogID'         => array('cc_LogID', 'integer', '', 0), // 文章ID
-                'ArtID'         => array('cc_ArtID', 'integer', '', 0), // 文章拓展ID
-                'CreateTime'    => array('cc_CreateTime', 'integer', 'bigint', 0), // 收藏时间
-                'Meta'          => array('cc_Meta', 'string', '', ''),
+                'ID'            => array('ID', 'integer', '', 0),
+                'UID'           => array('UID', 'integer', '', 0, '收藏人Lemon用户ID'),
+                'LogID'         => array('LogID', 'integer', '', 0, '文章ID'),
+                'ArtID'         => array('ArtID', 'integer', '', 0, '文章拓展ID'),
+                'CreateTime'    => array('CreateTime', 'integer', 'bigint', 0, '收藏时间'),
+                'Meta'          => array('Meta', 'string', '', ''),
             ),
         ),
         /**
-         * 点赞表
+         * 点赞记录表
          */
         'Like' => array(
             'name'          => '%pre%lemon_uc_like',
             'info'          => array(
-                'ID'            => array('lk_ID', 'integer', '', 0),
-                'LUID'          => array('lk_LUID', 'integer', '', 0),
-                'LogID'         => array('lk_LogID', 'integer', '', 0), // 文章ID
-                'ArtID'         => array('lk_ArtID', 'integer', '', 0), // 文章拓展ID
-                'CreateTime'    => array('lk_CreateTime', 'integer', 'bigint', 0), // 点赞时间
-                'Meta'          => array('lk_Meta', 'string', '', ''),
-            ),
-        ),
-        /**
-         * 关注表
-         */
-        'Follow' => array(
-            'name'          => '%pre%lemon_uc_follow',
-            'info'          => array(
-                'ID'            => array('fl_ID', 'integer', '', 0),
-                'LUID'          => array('fl_LUID', 'integer', '', 0),
-                'FUID'          => array('fl_FUID', 'integer', '', 0), // 关注用户ID 
-                'Mutual'        => array('fl_Mutual', 'integer', 'tinyint', 0), // 是否相互关注
-                'CreateTime'    => array('fl_CreateTime', 'integer', 'bigint', 0), // 关注时间
-                'Meta'          => array('fl_Meta', 'string', '', ''),
+                'ID'            => array('ID', 'integer', '', 0),
+                'UID'           => array('UID', 'integer', '', 0, 'Lemon用户ID'),
+                'LogID'         => array('LogID', 'integer', '', 0, '文章ID'),
+                'ArtID'         => array('ArtID', 'integer', '', 0, '文章拓展ID'),
+                'CreateTime'    => array('CreateTime', 'integer', 'bigint', 0, '点赞时间'),
+                'Meta'          => array('Meta', 'string', '', ''),
             ),
         ),
         /**
          * 消息列表
          */
         'MSGList' => array(
-            'name'          => '%pre%lemon_uc_msgs',
+            'name'          => '%pre%lemon_uc_msg_list',
             'info'          => array(
-                'ID'            => array('ml_ID', 'integer', '', 0),
-                'Status'        => array('ml_Status', 'integer', 'tinyint', 0),
-                'FromLUID'      => array('ml_FromLUID', 'integer', '', 0),
-                'ToLUID'        => array('ml_ToLUID', 'integer', '', 0),
-                'ContID'        => array('ml_ContID', 'integer', '', 0),
-                'DeleteFlag'    => array('ml_DeleteFlag', 'integer', '', 0),
-                'CreateTime'    => array('ml_CreateTime', 'integer', 'bigint', 0),
-                'Meta'          => array('ml_Meta', 'string', '', ''),
+                'ID'            => array('ID', 'integer', '', 0),
+                'Status'        => array('Status', 'integer', 'tinyint', 0, '消息状态'),
+                'FromUID'       => array('FromUID', 'integer', '', 0, '发送消息的Lemon用户ID'),
+                'ToUID'         => array('ToUID', 'integer', '', 0, '接收消息的Lemon用户ID'),
+                'ContID'        => array('ContID', 'integer', '', 0, '消息内容ID'),
+                'DeleteFlag'    => array('DeleteFlag', 'integer', 'tinyint', 0, '删除标记'),
+                'CreateTime'    => array('CreateTime', 'integer', 'bigint', 0, '创建时间'),
+                'Meta'          => array('Meta', 'string', '', ''),
             ),
         ),
         /**
@@ -293,17 +341,45 @@ function defineTable(&$table = [], &$tableInfo = [])
         'MSGContent' => array(
             'name'          => '%pre%lemon_uc_msg_content',
             'info'          => array(
-                'ID'            => array('mc_ID', 'integer', '', 0),
-                'Title'         => array('mc_Title', 'string', 255, ''),
-                'Content'       => array('mc_Content', 'string', '', ''),
-                'Meta'          => array('mc_Meta', 'string', '', ''),
+                'ID'            => array('ID', 'integer', '', 0),
+                'Title'         => array('Title', 'string', 256, '', '消息标题'),
+                'Content'       => array('Content', 'string', '', '', '消息内容'),
+                'Meta'          => array('Meta', 'string', '', ''),
+            ),
+        ),
+        /**
+         * 统计表
+         */
+        'Statistics'    => array(
+            'name'          => '%pre%lemon_uc_statistics',
+            'info'          => array(
+                'ID'            => array('ID', 'integer', '', 0),
+                'Date'          => array('Date', 'integer', 'bigint', 0, '记录日期开始时间戳'),
+                'RegCount'      => array('RegCount', 'integer', '', 0, '注册数'),
+                'LoginCount'    => array('LoginCount', 'integer', '', 0, '登录数'),
+                'VIPCount'      => array('VIPCount', 'integer', '', 0, 'VIP总数'),
+                'VIPLoginCount' => array('VIPLoginCount', 'integer', '', 0, 'VIP登录总数'),
+                'CollectCount'  => array('CollectCount', 'integer', '', 0, '收藏总数'),
+                'LikeCount'     => array('LikeCount', 'integer', '', 0, '点赞总数'),
+                'Meta'          => array('Meta', 'string', '', ''),
+            ),
+        ),
+        /**
+         * 插件功能配置
+         */
+        'Config'    => array(
+            'name'          => '%pre%lemon_uc_config',
+            'info'          => array(
+                'ID'            => array('ID', 'integer', '', 0),
+                'Type'          => array('Type', 'string', 50, ''),
+                'Content'       => array('Content', 'string', '', ''),
             ),
         ),
     );
 
     foreach ($tables as $k => $v) {
-        $table[$k] = $v['name'];
-        $tableInfo[$k] = $v['info'];
+        $table['LemonUCentre' . $k] = $v['name'];
+        $tableInfo['LemonUCentre' . $k] = $v['info'];
     }
 
     return $tables;
@@ -320,7 +396,6 @@ function createTable() {
     foreach ($tables as $k => $v) {
         if (!$zbp->db->ExistTable($v['name'])) {
             $s = $zbp->db->sql->CreateTable($v['name'], $v['info']);
-            $s = str_replace('=utf8', '=utf8mb4 COLLATE=utf8mb4_unicode_ci', $s);
             $zbp->db->QueryMulit($s);
         }
     }

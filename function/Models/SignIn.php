@@ -7,13 +7,13 @@ use Base;
 /**
  * Lemon登录记录
  */
-class LoginRecord extends Base
+class SignIn extends Base
 {
     public function __construct()
     {
         global $lemon_uc;
 
-        parent::__construct($lemon_uc->table['LoginRecord'], $lemon_uc->tableInfo['LoginRecord'], __CLASS__);
+        parent::__construct($lemon_uc->table['LemonUCentreSignIn'], $lemon_uc->tableInfo['LemonUCentreSignIn'], __CLASS__);
 
         $this->CreateTime = time();
     }
@@ -48,7 +48,7 @@ class LoginRecord extends Base
              * Lemon用户
              */
             case 'User':
-                return $lemon_uc->getUserByID($this->LUID);
+                return $lemon_uc->getUserByID($this->UID);
             /**
              * 登录类型
              */

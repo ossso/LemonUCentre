@@ -1,19 +1,19 @@
 <?php
 /**
- * Lemon积分记录
+ * 兑换码产品类型
  */
 
 namespace LemonUCentre\Models;
 
 use Base;
 
-
-class PointRecord extends Base
+class RedeemCodeProduct extends Base
 {
     public function __construct()
     {
-        global $zbp;
-        parent::__construct($zbp->table['LemonUCentrePointRecord'], $zbp->datainfo['LemonUCentrePointRecord'], __CLASS__);
+        global $lemon_uc;
+
+        parent::__construct($lemon_uc->table['LemonUCentreRedeemCodeProduct'], $lemon_uc->tableInfo['LemonUCentreRedeemCodeProduct'], __CLASS__);
 
         $this->CreateTime = time();
     }
@@ -24,15 +24,14 @@ class PointRecord extends Base
      */
     public function __set($name, $value)
     {
-        switch($name) {
+        switch ($name) {
             case 'User':
-            case 'Cate':
                 return;
             break;
             default:
-                parent::__set($name, $value);
-            break;
         }
+
+        parent::__set($name, $value);
     }
 
     /**
@@ -42,15 +41,28 @@ class PointRecord extends Base
     public function __get($name)
     {
         global $zbp, $lemon_uc;
-        switch($name) {
+
+        switch ($name) {
             case 'User':
-                return $lemon_uc->GetUserByID($this->UID);
+                if ($this->UID > 0) {
+                    $lemon_uc->getUserByID($this->UID);
+                }
+                return null;
             break;
-            case 'Cate': {
-                return $lemon_uc->GetPointCateByID($this->CateID);
-            }
-            break;
+            default:
         }
+
         return parent::__get($name);
     }
+
+    /**
+     * 保存
+     *
+     * @return bool
+     */
+    public function Save()
+    {
+        return parent::Save();
+    }
+
 }

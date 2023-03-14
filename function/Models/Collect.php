@@ -45,7 +45,7 @@ class Collect extends Base
         global $zbp, $lemon_uc;
         switch($name) {
             case 'User':
-                return $lemon_uc->GetUserByID($this->LUID);
+                return $lemon_uc->GetUserByID($this->UID);
             break;
             case 'Article':
                 return $lemon_uc->GetArticleByID($this->ArtID);
@@ -60,7 +60,7 @@ class Collect extends Base
     /**
      * 获取数据库内指定LogID的数据
      * @param int $id 指定LogID
-     * @param int $luid LUID
+     * @param int $luid UID
      * @return bool
      */
     public function LoadInfoByLogID($id, $luid)
@@ -68,8 +68,8 @@ class Collect extends Base
         $id = (int) $id;
         $luid = (int) $luid;
         $s = $this->db->sql->Select($this->table, array('*'), array(
-            array('=', 'lc_LUID', $luid),
-            array('=', 'lc_LogID', $id),
+            array('=', 'UID', $luid),
+            array('=', 'LogID', $id),
         ), null, null, null);
 
         $array = $this->db->Query($s);
@@ -84,15 +84,15 @@ class Collect extends Base
     /**
      * 获取数据库内指定ArtID的数据
      * @param int $id 指定ArtID
-     * @param int $luid LUID
+     * @param int $luid UID
      * @return bool
      */
     public function LoadInfoByArtID($id, $luid)
     {
         $id = (int) $id;
         $s = $this->db->sql->Select($this->table, array('*'), array(
-            array('=', 'lc_LUID', $luid),
-            array('=', 'lc_ArtID', $id),
+            array('=', 'UID', $luid),
+            array('=', 'ArtID', $id),
         ), null, null, null);
 
         $array = $this->db->Query($s);

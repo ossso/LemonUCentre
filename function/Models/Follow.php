@@ -42,7 +42,7 @@ class Follow extends Base
         global $zbp, $lemon_uc;
         switch($name) {
             case 'User':
-                return $lemon_uc->GetUserByID($this->LUID);
+                return $lemon_uc->GetUserByID($this->UID);
             break;
             case 'FollowUser':
                 return $lemon_uc->GetUserByID($this->FUID);
@@ -52,7 +52,7 @@ class Follow extends Base
     }
 
     /**
-     * @param int $luid LUID
+     * @param int $luid UID
      * @param int $fuid FUID
      * @return bool
      */
@@ -60,8 +60,8 @@ class Follow extends Base
         $luid = (int) $luid;
         $fuid = (int) $fuid;
         $s = $this->db->sql->Select($this->table, array('*'), array(
-            array('=', 'lf_LUID', $luid),
-            array('=', 'lf_FUID', $fuid),
+            array('=', 'UID', $luid),
+            array('=', 'FUID', $fuid),
         ), null, null, null);
 
         $array = $this->db->Query($s);

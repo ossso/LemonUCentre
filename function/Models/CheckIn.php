@@ -1,6 +1,6 @@
 <?php
 /**
- * Lemon签到
+ * 用户签到
  */
 
 namespace LemonUCentre\Models;
@@ -41,9 +41,19 @@ class CheckIn extends Base
         global $zbp, $lemon_uc;
         switch($name) {
             case 'User':
-                return $lemon_uc->GetUserByID($this->LUID);
+                return $lemon_uc->GetUserByID($this->UID);
             break;
         }
         return parent::__get($name);
+    }
+    
+    /**
+     * @param string $s
+     *
+     * @return bool|string
+     */
+    public function LastDate($s = 'Y-m-d H:i:s')
+    {
+        return date($s, (int) $this->LastTime);
     }
 }

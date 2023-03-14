@@ -1,6 +1,6 @@
 <?php
 /**
- * Lemon 验证码发送记录
+ * Lemon会员记录
  */
 
 namespace LemonUCentre\Models;
@@ -8,12 +8,12 @@ namespace LemonUCentre\Models;
 use Base;
 
 
-class VerifyCode extends Base
+class VIPCate extends Base
 {
     public function __construct()
     {
         global $zbp;
-        parent::__construct($zbp->table['LemonUCentreVerifyCode'], $zbp->datainfo['LemonUCentreVerifyCode'], __CLASS__);
+        parent::__construct($zbp->table['LemonUCentreVIPCate'], $zbp->datainfo['LemonUCentreVIPCate'], __CLASS__);
 
         $this->CreateTime = time();
     }
@@ -24,8 +24,8 @@ class VerifyCode extends Base
      */
     public function __set($name, $value)
     {
-        switch ($name) {
-            case 'TypeName':
+        switch($name) {
+            case 'User':
                 return;
             break;
             default:
@@ -40,19 +40,12 @@ class VerifyCode extends Base
      */
     public function __get($name)
     {
-        switch ($name) {
-            case 'TypeName': {
-                switch ($this->Type) {
-                    case 1:
-                        return 'Email';
-                    default:
-                    case 0:
-                        return '手机号码';
-                }
-            }
+        global $zbp, $lemon_uc;
+        switch($name) {
+            case 'User':
+                return $lemon_uc->GetUserByID($this->UID);
             break;
         }
         return parent::__get($name);
     }
-
 }

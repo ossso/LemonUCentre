@@ -1,6 +1,6 @@
 <?php
 /**
- * Lemon积分记录
+ * 用户签到日志
  */
 
 namespace LemonUCentre\Models;
@@ -8,14 +8,12 @@ namespace LemonUCentre\Models;
 use Base;
 
 
-class PointRecord extends Base
+class CheckInLogs extends Base
 {
     public function __construct()
     {
         global $zbp;
-        parent::__construct($zbp->table['LemonUCentrePointRecord'], $zbp->datainfo['LemonUCentrePointRecord'], __CLASS__);
-
-        $this->CreateTime = time();
+        parent::__construct($zbp->table['LemonUCentreCheckInLogs'], $zbp->datainfo['LemonUCentreCheckInLogs'], __CLASS__);
     }
 
     /**
@@ -26,7 +24,6 @@ class PointRecord extends Base
     {
         switch($name) {
             case 'User':
-            case 'Cate':
                 return;
             break;
             default:
@@ -37,6 +34,7 @@ class PointRecord extends Base
 
     /**
      * @param $name
+     * 
      * @return array|int|mixed|null|string
      */
     public function __get($name)
@@ -46,11 +44,17 @@ class PointRecord extends Base
             case 'User':
                 return $lemon_uc->GetUserByID($this->UID);
             break;
-            case 'Cate': {
-                return $lemon_uc->GetPointCateByID($this->CateID);
-            }
-            break;
         }
         return parent::__get($name);
+    }
+    
+    /**
+     * @param string $s
+     *
+     * @return bool|string
+     */
+    public function Date($s = 'Y-m-d H:i:s')
+    {
+        return date($s, (int) $this->CreateTime);
     }
 }

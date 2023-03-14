@@ -186,7 +186,7 @@ function defineDatainfo(&$info)
         'InviteCode' => array(
             'fields' => array(
                 'ID',
-                'LUID',
+                'UID',
                 'Type',
                 'Status',
                 'Code',
@@ -226,7 +226,7 @@ function defineDatainfo(&$info)
                     'type'  => 'fields',
                     'list'  => array(
                         'TypeID',
-                        'LUID',
+                        'UID',
                         'UseID',
                         'CreateTime',
                         'UseTime',

@@ -987,7 +987,7 @@ class UCenter
         $yesterday = date('Y/m/d 00:00:00', strtotime('-1 day'));
         $timestamp = strtotime($yesterday);
         $w = array();
-        $w[] = array('=', 'ckr_LUID', $lemonUser->LUID);
+        $w[] = array('=', 'ckr_UID', $lemonUser->UID);
         $w[] = array('>=', 'ckr_CreateTime', $timestamp);
         $result = $this->getCheckInRerocdList(array('*'), $w, null, array(1));
 
@@ -1006,7 +1006,7 @@ class UCenter
         $today = date('Y/m/d 00:00:00');
         $timestamp = strtotime($today);
         $w = array();
-        $w[] = array('=', 'ckr_LUID', $lemonUser->LUID);
+        $w[] = array('=', 'ckr_UID', $lemonUser->UID);
         $w[] = array('>=', 'ckr_CreateTime', $timestamp);
         $result = $this->getCheckInRerocdList(array('*'), $w, null, array(1));
 
@@ -1041,7 +1041,7 @@ class UCenter
 
         $code = new RedeemCode();
         $code->TypeID = $typeId;
-        $code->LUID = $zbp->user->LemonUser->ID;
+        $code->UID = $zbp->user->LemonUser->ID;
         $code->Value = $value;
         $code->Code = RedeemCode::getCode();
         $code->Save();

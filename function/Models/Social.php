@@ -1,6 +1,6 @@
 <?php
 /**
- * Lemon社交登录
+ * 社交登录绑定关系
  */
 
 namespace LemonUCentre\Models;
@@ -8,12 +8,12 @@ namespace LemonUCentre\Models;
 use Base;
 
 
-class Third extends Base
+class Social extends Base
 {
     public function __construct()
     {
         global $zbp;
-        parent::__construct($zbp->table['LemonUCentreThird'], $zbp->datainfo['LemonUCentreThird'], __CLASS__);
+        parent::__construct($zbp->table['LemonUCentreSocial'], $zbp->datainfo['LemonUCentreSocial'], __CLASS__);
 
         $this->CreateTime = time();
         $this->UpdateTime = time();
@@ -27,7 +27,7 @@ class Third extends Base
     {
         switch($name) {
             case 'User':
-            case 'TypeName':
+            case 'PlatformName':
                 return;
             break;
             default:
@@ -45,10 +45,10 @@ class Third extends Base
         global $zbp, $lemon_uc;
         switch($name) {
             case 'User':
-                return $lemon_uc->GetUserByID($this->LUID);
+                return $lemon_uc->GetUserByID($this->UID);
             break;
-            case 'TypeName': {
-                switch ($this->Type) {
+            case 'PlatformName': {
+                switch ($this->Platform) {
                     default:
                     case 0:
                         return 'QQ';
@@ -56,6 +56,14 @@ class Third extends Base
                         return '微信';
                     case 2:
                         return '微博';
+                    case 3:
+                        return 'Google';
+                    case 4:
+                        return 'Github';
+                    case 5:
+                        return 'Facebook';
+                    case 6:
+                        return 'Twiiter';
                 }
             }
             break;
@@ -65,16 +73,16 @@ class Third extends Base
 
     /**
      * 获取数据库内指定类型OpenID的数据
-     * @param int $type 指定类型
      * @param string $openId
+     * @param int $type 指定类型
      * @return bool
      */
-    public function LoadInfoByOpenID($type = 0, $openId)
+    public function LoadInfoByOpenID($openId, $platform = 0)
     {
         $type = (int) $type;
         $s = $this->db->sql->Select($this->table, array('*'), array(
-            array('=', 'td_Type', $type),
-            array('=', 'td_OpenID', $openId),
+            array('=', 'OpenID', $openId),
+            array('=', 'Platform', $platform),
         ), null, null, null);
 
         $array = $this->db->Query($s);
