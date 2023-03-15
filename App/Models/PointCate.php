@@ -1,6 +1,6 @@
 <?php
 /**
- * Lemon积分记录
+ * 积分类型
  */
 
 namespace LemonUCentre\Models;
@@ -8,12 +8,12 @@ namespace LemonUCentre\Models;
 use Base;
 
 
-class PointRecord extends Base
+class PointCate extends Base
 {
     public function __construct()
     {
         global $zbp;
-        parent::__construct($zbp->table['LemonUCentrePointRecord'], $zbp->datainfo['LemonUCentrePointRecord'], __CLASS__);
+        parent::__construct($zbp->table['LemonUCentrePointCate'], $zbp->datainfo['LemonUCentrePointCate'], __CLASS__);
 
         $this->CreateTime = time();
     }
@@ -25,14 +25,12 @@ class PointRecord extends Base
     public function __set($name, $value)
     {
         switch($name) {
-            case 'User':
-            case 'Cate':
+            case 'StatusName':
                 return;
             break;
             default:
-                parent::__set($name, $value);
-            break;
         }
+        parent::__set($name, $value);
     }
 
     /**
@@ -43,12 +41,11 @@ class PointRecord extends Base
     {
         global $zbp, $lemon_uc;
         switch($name) {
-            case 'User':
-                return $lemon_uc->GetUserByID($this->UID);
-            break;
-            case 'Cate': {
-                return $lemon_uc->GetPointCateByID($this->CateID);
-            }
+            case 'StatusName':
+                if ($this->status === 1) {
+                    return '启用';
+                }
+                return '停用';
             break;
         }
         return parent::__get($name);

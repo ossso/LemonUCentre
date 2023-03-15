@@ -1,11 +1,11 @@
 <?php
 /**
  * LemonUCentre
- * 柠檬系列：用户中心
+ * Lemon系列插件：用户中心
  */
 
-include_once __DIR__ . '/events/index.php';
-include_once __DIR__ . '/function/index.php';
+include_once __DIR__ . '/App/index.php';
+include_once __DIR__ . '/Function/index.php';
 
 /**
  * 注册插件

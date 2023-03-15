@@ -1,6 +1,6 @@
 <?php
 /**
- * Lemon积分发放日志
+ * 积分发放日志
  */
 
 namespace LemonUCentre\Models;

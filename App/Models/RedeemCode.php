@@ -25,8 +25,8 @@ class RedeemCode extends Base
     public function __set($name, $value)
     {
         switch ($name) {
-            case 'Use':
-            case 'Type':
+            case 'UseUser':
+            case 'Product':
             case 'CodeValue':
                 return;
             break;
@@ -45,7 +45,7 @@ class RedeemCode extends Base
         global $zbp, $lemon_uc;
 
         switch ($name) {
-            case 'Use':
+            case 'UseUser':
                 if ($this->UseID > 0) {
                     return $lemon_uc->getUserByID($this->UseID);
                 }

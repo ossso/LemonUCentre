@@ -1,19 +1,19 @@
 <?php
 /**
- * Lemon会员记录
+ * 积分记录
+ * 单个用户的积分记录
  */
 
 namespace LemonUCentre\Models;
 
 use Base;
 
-
-class VIPCate extends Base
+class PointRecord extends Base
 {
     public function __construct()
     {
         global $zbp;
-        parent::__construct($zbp->table['LemonUCentreVIPCate'], $zbp->datainfo['LemonUCentreVIPCate'], __CLASS__);
+        parent::__construct($zbp->table['LemonUCentrePointRecord'], $zbp->datainfo['LemonUCentrePointRecord'], __CLASS__);
 
         $this->CreateTime = time();
     }
@@ -26,6 +26,7 @@ class VIPCate extends Base
     {
         switch($name) {
             case 'User':
+            case 'Cate':
                 return;
             break;
             default:
@@ -44,6 +45,10 @@ class VIPCate extends Base
         switch($name) {
             case 'User':
                 return $lemon_uc->GetUserByID($this->UID);
+            break;
+            case 'Cate': {
+                return $lemon_uc->GetPointCateByID($this->CateID);
+            }
             break;
         }
         return parent::__get($name);
