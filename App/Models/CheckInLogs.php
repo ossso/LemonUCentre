@@ -7,13 +7,14 @@ namespace LemonUCentre\Models;
 
 use Base;
 
-
 class CheckInLogs extends Base
 {
     public function __construct()
     {
         global $zbp;
         parent::__construct($zbp->table['LemonUCentreCheckInLogs'], $zbp->datainfo['LemonUCentreCheckInLogs'], __CLASS__);
+
+        $this->CreateTime = time();
     }
 
     /**
@@ -25,11 +26,9 @@ class CheckInLogs extends Base
         switch($name) {
             case 'User':
                 return;
-            break;
             default:
-                parent::__set($name, $value);
-            break;
         }
+        parent::__set($name, $value);
     }
 
     /**
@@ -43,7 +42,7 @@ class CheckInLogs extends Base
         switch($name) {
             case 'User':
                 return $lemon_uc->GetUserByID($this->UID);
-            break;
+            default:
         }
         return parent::__get($name);
     }

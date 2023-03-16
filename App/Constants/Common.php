@@ -4,7 +4,7 @@
  * ----- 通用值 ----- 
  */
 
-namespace LemonUCentre\Constant\Common;
+namespace LemonUCentre\Constants\Common;
 
 // 通用的状态值
 const STATUS = array(

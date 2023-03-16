@@ -7,7 +7,6 @@ namespace LemonUCentre\Models;
 
 use Base;
 
-
 class Article extends Base
 {
     public function __construct()
@@ -26,7 +25,6 @@ class Article extends Base
             case 'User':
             case 'Post':
                 return null;
-            break;
             default:
         }
         parent::__set($name, $value);

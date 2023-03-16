@@ -283,7 +283,7 @@ function defineTable(&$table = [], &$tableInfo = [])
             'name'          => '%pre%lemon_uc_article',
             'info'          => array(
                 'ID'            => array('ID', 'integer', '', 0),
-                'LogID'         => array('LogID', 'integer', '', 0, '文章ID(LOG表)'),
+                'LogID'         => array('LogID', 'integer', '', 0, '文章ID'),
                 'Status'        => array('Status', 'integer', 'tinyint', 0, '状态'),
                 'CollectNums'   => array('CollectNums', 'integer', '', 0, '收藏总数'),
                 'LikeNums'      => array('LikeNums', 'integer', '', 0, '点赞总数'),

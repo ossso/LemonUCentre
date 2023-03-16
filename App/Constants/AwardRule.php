@@ -4,7 +4,7 @@
  * ----- 奖励规则 ----- 
  */
 
-namespace LemonUCentre\Constant\AwardRule;
+namespace LemonUCentre\Constants\AwardRule;
 
 // 奖励规则的适用分类
 const CATE_NAME = array(

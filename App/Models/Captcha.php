@@ -6,7 +6,7 @@
 namespace LemonUCentre\Models;
 
 use Base;
-
+use LemonUCentre\Constants\Captcha as CAPTCHA;
 
 class Captcha extends Base
 {
@@ -28,11 +28,9 @@ class Captcha extends Base
             case 'User':
             case 'TypeName':
                 return;
-            break;
             default:
-                parent::__set($name, $value);
-            break;
         }
+        parent::__set($name, $value);
     }
 
     /**
@@ -45,16 +43,9 @@ class Captcha extends Base
         switch ($name) {
             case 'User':
                 return $lemon_uc->GetUserByID($this->UID);
-            case 'TypeName': {
-                switch ($this->Type) {
-                    case 1:
-                        return 'Email';
-                    default:
-                    case 0:
-                        return '手机号码';
-                }
-            }
-            break;
+            case 'TypeName':                
+                return CAPTCHA\TYPE_NAME[$this->Type];
+            default:
         }
         return parent::__get($name);
     }

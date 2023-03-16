@@ -7,7 +7,6 @@ namespace LemonUCentre\Models;
 
 use Base;
 
-
 class Collect extends Base
 {
     public function __construct()

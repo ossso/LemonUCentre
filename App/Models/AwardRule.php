@@ -6,10 +6,9 @@
 
 namespace LemonUCentre\Models;
 
-use LemonUCentre\Constant\Common as COMMON;
-use LemonUCentre\Constant\AwardRule as AWARD_RUlE;
-
 use Base;
+use LemonUCentre\Constants\Common as COMMON;
+use LemonUCentre\Constants\AwardRule as AWARD_RUlE;
 
 class AwardRule extends Base
 {

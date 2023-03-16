@@ -1,12 +1,12 @@
 <?php
 /**
- * Lemon 站内信列表
+ * 站内信列表
  */
 
 namespace LemonUCentre\Models;
 
 use Base;
-
+use LemonUCentre\Constants\Msg as MSG;
 
 class MSGList extends Base
 {
@@ -30,11 +30,9 @@ class MSGList extends Base
             case 'Content':
             case 'StatusName':
                 return;
-            break;
             default:
-                parent::__set($name, $value);
-            break;
         }
+        parent::__set($name, $value);
     }
 
     /**
@@ -47,19 +45,12 @@ class MSGList extends Base
         switch($name) {
             case 'FromUser':
                 return $lemon_uc->GetUserByID($this->FromUID);
-            break;
             case 'ToUser':
                 return $lemon_uc->GetUserByID($this->ToUID);
-            break;
             case 'Content':
                 return $lemon_uc->GetMSGContentByID($this->ContID);
-            break;
             case 'StatusName':
-                if ($this->Status == 1) {
-                    return '已读';
-                }
-                return '未读';
-            break;
+                return MSG\READ_STATUS[$this->Status];
         }
         return parent::__get($name);
     }
