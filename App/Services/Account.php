@@ -1,12 +1,13 @@
 <?php
+/**
+ * 账号管理
+ * 处理账号获取
+ */
 
 namespace LemonUCentre\Services;
 
 use Member;
 
-/**
- * 账号管理
- */
 class Account
 {
     /**
@@ -40,7 +41,7 @@ class Account
      * 载入用户
      * 只返回，不接入系统
      * @param string $account 用户名
-     * @return $user;
+     * @return Member;
      */
     static public function loadUser($account)
     {
@@ -67,20 +68,20 @@ class Account
      * 根据手机号获取用户
      * @param string $phone 手机号码
      * @param boolean $isCheck 手机号码是否验证
-     * @return $user;
+     * @return Member;
      */
     static public function loadUserByPhone($phone, $isCheck = false)
     {
         global $lemon_uc;
 
         $w = array();
-        $w[] = array('=', 'u_Phone', $phone);
+        $w[] = array('=', 'Phone', $phone);
         if ($isCheck) {
-            $w[] = array('>', 'u_Phoned', 0);
+            $w[] = array('>', 'Phoned', 0);
         }
         $result = $lemon_uc->getUserList(array('*'), $w);
         if (count($result) > 0) {
-            return $result[0]->User;
+            return $result[0]->Member;
         }
 
         return new Member();
@@ -90,20 +91,20 @@ class Account
      * 根据邮箱地址获取用户
      * @param string $email 邮箱地址
      * @param boolean $isCheck 邮箱地址是否验证
-     * @return $user;
+     * @return Member;
      */
     static public function loadUserByEmail($email, $isCheck = false)
     {
         global $lemon_uc;
 
         $w = array();
-        $w[] = array('=', 'u_Email', $email);
+        $w[] = array('=', 'Email', $email);
         if ($isCheck) {
-            $w[] = array('>', 'u_Emailed', 0);
+            $w[] = array('>', 'Emailed', 0);
         }
         $result = $lemon_uc->getUserList(array('*'), $w);
         if (count($result) > 0) {
-            return $result[0]->User;
+            return $result[0]->Member;
         }
 
         return new Member();

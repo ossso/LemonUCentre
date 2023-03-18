@@ -9,7 +9,7 @@ namespace LemonUCentre\Services;
 // use LemonUCentre\Models\LoginRecord;
 // use LemonUCentre\Models\RedeemCode;
 // use LemonUCentre\Models\RedeemCodeProduct;
-// use LemonUCentre\Models\User;
+use LemonUCentre\Models\User;
 
 /**
  * 用户中心

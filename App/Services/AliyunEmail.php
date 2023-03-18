@@ -1,12 +1,11 @@
 <?php
+/**
+ * 阿里云邮件服务
+ */
 
 namespace LemonUCentre\Service;
 
 use LemonUCentre\Utils;
-
-/**
- * 阿里云短信服务
- */
 
 class AliyunEmail
 {
